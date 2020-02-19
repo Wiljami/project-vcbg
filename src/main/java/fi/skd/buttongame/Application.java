@@ -27,11 +27,4 @@ public class Application {
 		buttonGame.play(gameState);
 		return new GameState(gameState);
 	}
-
-	@CrossOrigin
-	@RequestMapping("/reset")
-	public GameState reset() {
-		gameState.reset();
-		return new GameState(gameState);
-	}
 }
