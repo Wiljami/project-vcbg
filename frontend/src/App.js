@@ -26,7 +26,7 @@ class App extends React.Component {
     }
 
     playGame = async () => {
-        const hr = await fetch('http://localhost:8080/game')
+        const hr = await fetch('/game')
         const data = await hr.json()
         let points = localStorage.getItem('points')
         points = points - 1 + data.lastWin
