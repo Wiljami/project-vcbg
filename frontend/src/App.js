@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '@material-ui/core/Button';
 
 class App extends React.Component {
     constructor(props) {
@@ -13,15 +14,15 @@ class App extends React.Component {
     render() {
         let data = []
         const points = localStorage.getItem('points')
-        if (points <= 0) {
-            data.push(<GameButton text='Reset Game' click={this.resetGame}/>)
-        } else {
-            data.push(<GameButton text='Play Game' click={this.playGame}/>)
-        }
         data.push(<GameState
             points={points}
             lastWin={localStorage.getItem('lastWin')}
             clicksToNextWin={localStorage.getItem('clicksToNextWin')}/>)
+        if (points <= 0) {
+            data.push(<GameButton text='Reset Game' color='secondary' click={this.resetGame}/>)
+        } else {
+            data.push(<GameButton text='Play Game' color='primary' click={this.playGame}/>)
+        }
         return data
     }
 
@@ -52,7 +53,7 @@ class GameButton extends React.Component {
     }
 
     render() {
-        return <button onClick={this.props.click} >{this.props.text}</button>
+        return <Button onClick={this.props.click} color={this.props.color} >{this.props.text}</Button>
     }
 }
 
