@@ -24,7 +24,6 @@ public class Application {
 	@CrossOrigin
 	@RequestMapping("/game")
 	public GameState game() {
-		buttonGame.play(gameState);
-		return new GameState(gameState);
+		return buttonGame.play();
 	}
 }

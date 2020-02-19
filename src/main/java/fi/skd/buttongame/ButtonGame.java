@@ -7,7 +7,8 @@ public class ButtonGame {
 
     private int counter;
 
-    public GameState play(GameState state) {
+    public GameState play() {
+        GameState state = new GameState();
         int value = runCounter();
         int remainder = value % 10;
         int winnings = 0;
