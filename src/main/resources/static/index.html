@@ -6,14 +6,16 @@
 </head>
 <body>
 <button id="play">Play</button>
-<div id="target"></div>
+<div id="points"></div>
+<div id="winnings"></div>
 <script>
     const button = document.querySelector('#play')
     button.addEventListener('click', () => {
         const fetchLocations = async () => {
             const hr = await fetch('http://localhost:8080/game')
             const data = await hr.json()
-            document.querySelector('#target').innerHTML = data.points
+            document.querySelector('#points').innerHTML = `Your points: ` + data.points
+            document.querySelector('#winnings').innerHTML = `Points from last click: ` + data.lastWin
         }
         fetchLocations()
     })
