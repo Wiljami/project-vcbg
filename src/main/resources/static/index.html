@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<button id="play">Play</button>
+<div id="target"></div>
+<script>
+    const button = document.querySelector('#play')
+    button.addEventListener('click', () => {
+        const fetchLocations = async () => {
+            const hr = await fetch('http://localhost:8080/game')
+            const data = await hr.json()
+            document.querySelector('#target').innerHTML = data.points
+        }
+        fetchLocations()
+    })
+</script>
+</body>
+</html>
