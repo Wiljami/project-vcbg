@@ -2,23 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Button game</title>
+    <script src ="index.js"></script>
 </head>
 <body>
 <button id="play">Play</button>
 <div id="points"></div>
 <div id="winnings"></div>
-<script>
-    const button = document.querySelector('#play')
-    button.addEventListener('click', () => {
-        const fetchLocations = async () => {
-            const hr = await fetch('http://localhost:8080/game')
-            const data = await hr.json()
-            document.querySelector('#points').innerHTML = `Your points: ` + data.points
-            document.querySelector('#winnings').innerHTML = `Points from last click: ` + data.lastWin
-        }
-        fetchLocations()
-    })
-</script>
 </body>
 </html>
