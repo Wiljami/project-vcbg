@@ -5,6 +5,8 @@ class App extends React.Component {
         super(props)
         if (localStorage.getItem('points') === null) {
             localStorage.setItem('points', 20)
+            localStorage.setItem('clicksToNextWin', 0)
+            localStorage.setItem('lastWin', 0)
         }
     }
 
@@ -16,7 +18,10 @@ class App extends React.Component {
         } else {
             data.push(<GameButton text='Play Game' click={this.playGame}/>)
         }
-        data.push(<GameState points={points} lastWin={points}/>)
+        data.push(<GameState
+            points={points}
+            lastWin={localStorage.getItem('lastWin')}
+            clicksToNextWin={localStorage.getItem('clicksToNextWin')}/>)
         return data
     }
 
@@ -27,6 +32,8 @@ class App extends React.Component {
         points = points - 1 + data.lastWin
         console.log('Points: ' + points)
         localStorage.setItem('points', points)
+        localStorage.setItem('clicksToNextWin', data.clicksToNextWin)
+        localStorage.setItem('lastWin', data.lastWin)
         this.setState({'points' : points})
     }
 
@@ -53,6 +60,8 @@ class GameState extends React.Component {
     render () {
         let data = []
         data.push(<h1>Your points: {this.props.points}</h1>)
+        data.push(<h1>Your last win: {this.props.lastWin}</h1>)
+        data.push(<h1>Clicks to next win: {this.props.clicksToNextWin}</h1>)
         return data
     }
 }
