@@ -8,9 +8,6 @@ public class ButtonGame {
     private int counter;
 
     public GameState play(GameState state) {
-        if (state.getPoints() <= 0) {
-            return state;
-        }
         int value = runCounter();
         int remainder = value % 10;
         int winnings = 0;
@@ -28,7 +25,6 @@ public class ButtonGame {
         }
 
         state.setLastWin(winnings);
-        state.setPoints(state.getPoints() - 1 + winnings);
         state.setWin(winner);
         state.setClicksToNextWin(10 - remainder);
 
