@@ -31,11 +31,10 @@ class App extends React.Component {
         const data = await hr.json()
         let points = localStorage.getItem('points')
         points = points - 1 + data.lastWin
-        console.log('Points: ' + points)
-        localStorage.setItem('points', points)
-        localStorage.setItem('clicksToNextWin', data.clicksToNextWin)
-        localStorage.setItem('lastWin', data.lastWin)
-        this.setState({'points' : points})
+        await localStorage.setItem('points', points)
+        await localStorage.setItem('clicksToNextWin', data.clicksToNextWin)
+        await localStorage.setItem('lastWin', data.lastWin)
+        await this.setState({'points' : points})
     }
 
     resetGame = () => {
