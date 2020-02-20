@@ -36,16 +36,17 @@ public class ButtonGame {
     }
 
     private synchronized int runCounter() {
-        int counter = 0;
+        int counter = -1;
         String filename = "counter.txt";
         File counterFile = new File(filename);
         int ch;
+
         if (!counterFile.exists()) {
             try {
                 counterFile.createNewFile();
                 FileWriter fw = new FileWriter(counterFile);
                 counter = 1;
-                fw.write(counter);
+                fw.write(String.valueOf(counter));
                 fw.close();
             } catch (IOException e) {
                 System.out.println("Something went wrong with creating the counter file.");
@@ -53,14 +54,20 @@ public class ButtonGame {
         } else {
             try {
                 FileReader fr=new FileReader(filename);
-                while ((ch=fr.read())!=-1)
-                    System.out.print((char)ch);
+                StringBuilder stringBuilder = new StringBuilder();
+                while ((ch=fr.read())!=-1) {
+                    stringBuilder.append((char) ch);
+                }
+                fr.close();
+                counter = Integer.parseInt(stringBuilder.toString());
+                counter++;
+                FileWriter fw = new FileWriter(counterFile);
+                fw.write(String.valueOf(counter));
+                fw.close();
             } catch (IOException e) {
-                System.out.println("Something went wrong with reading the counter file.");
+                System.out.println("Something went wrong with the counter file.");
             }
         }
-
-
 
         return counter;
     }
