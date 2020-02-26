@@ -53,7 +53,6 @@ public class ButtonGame {
             try {
                 DataInputStream dis = new DataInputStream(new FileInputStream(counterFile));
                 counter = dis.readInt() + 1;
-                System.out.println(counter);
                 DataOutputStream dos = new DataOutputStream(new FileOutputStream(counterFile));
                 dos.writeInt(counter);
             } catch (IOException e) {
