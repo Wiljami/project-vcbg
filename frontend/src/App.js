@@ -1,5 +1,6 @@
 import React from 'react'
-import Button from '@material-ui/core/Button';
+import GameState from './GameState'
+import GameButton from './GameButton'
 
 class App extends React.Component {
     constructor(props) {
@@ -48,29 +49,6 @@ class App extends React.Component {
         const points = 20
         localStorage.setItem('points', points)
         this.setState({'points' : points})
-    }
-}
-
-class GameButton extends React.Component {
-    constructor(props) {
-        super(props)
-        this.click = props.click
-        this.text = props.text
-    }
-
-    render() {
-        return <Button onClick={this.props.click} color={this.props.color} >{this.props.text}</Button>
-    }
-}
-
-class GameState extends React.Component {
-    render () {
-        let data = []
-        data.push(<h1>Your points: {this.props.points}</h1>)
-        data.push(this.props.button)
-        data.push(<h1>Your last win: {this.props.lastWin}</h1>)
-        data.push(<h1>Clicks to next win: {this.props.clicksToNextWin}</h1>)
-        return data
     }
 }
 
