@@ -6,18 +6,17 @@ class App extends React.Component {
         super(props)
         if (localStorage.getItem('points') === null) {
             localStorage.setItem('points', 20)
-            localStorage.setItem('clicksToNextWin', 0)
-            localStorage.setItem('lastWin', 0)
         }
+        this.state = {'points' :localStorage.getItem('points')}
     }
 
     render() {
         let data = []
         const points = localStorage.getItem('points')
         data.push(<GameState
-            points={points}
-            lastWin={localStorage.getItem('lastWin')}
-            clicksToNextWin={localStorage.getItem('clicksToNextWin')}/>)
+            points={this.state.points}
+            lastWin={this.state.lastWin}
+            clicksToNextWin={this.state.clicksToNextWin}/>)
         if (points <= 0) {
             data.push(<GameButton text='Reset Game' color='secondary' click={this.resetGame}/>)
         } else {
@@ -26,22 +25,17 @@ class App extends React.Component {
         return data
     }
 
-    playGame = async () => {
-        this.fetchData().updatePage()
+    playGame = () => {
+        fetch('/game').then(data => data.json()).then(this.updatePage)
     }
 
     updatePage = (data) => {
         let points = localStorage.getItem('points')
         points = points - 1 + data.lastWin
         localStorage.setItem('points', points)
-        localStorage.setItem('clicksToNextWin', data.clicksToNextWin)
-        localStorage.setItem('lastWin', data.lastWin)
-        this.setState({'points' : points})
-    }
-
-    fetchData = async () => {
-        const hr = await fetch('/game')
-        return await hr.json()
+        this.setState({'points' : points,
+            'clicksToNextWin' : data.clicksToNextWin,
+            'lastWin' : data.lastWin})
     }
 
     resetGame = () => {
