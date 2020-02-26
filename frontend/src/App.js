@@ -7,21 +7,27 @@ class App extends React.Component {
         if (localStorage.getItem('points') === null) {
             localStorage.setItem('points', 20)
         }
-        this.state = {'points' :localStorage.getItem('points')}
+        this.state = {'points' :localStorage.getItem('points'),
+            'clicksToNextWin' : '?',
+            'lastWin' : '?'}
     }
 
     render() {
+        let button;
         let data = []
         const points = localStorage.getItem('points')
+        if (points <= 0) {
+            button = <GameButton text='Reset Game' color='secondary' click={this.resetGame}/>;
+        } else {
+            button = <GameButton text='Play Game' color='primary' click={this.playGame}/>
+        }
         data.push(<GameState
             points={this.state.points}
             lastWin={this.state.lastWin}
-            clicksToNextWin={this.state.clicksToNextWin}/>)
-        if (points <= 0) {
-            data.push(<GameButton text='Reset Game' color='secondary' click={this.resetGame}/>)
-        } else {
-            data.push(<GameButton text='Play Game' color='primary' click={this.playGame}/>)
-        }
+            clicksToNextWin={this.state.clicksToNextWin}
+            button={button}
+        />)
+
         return data
     }
 
@@ -61,6 +67,7 @@ class GameState extends React.Component {
     render () {
         let data = []
         data.push(<h1>Your points: {this.props.points}</h1>)
+        data.push(this.props.button)
         data.push(<h1>Your last win: {this.props.lastWin}</h1>)
         data.push(<h1>Clicks to next win: {this.props.clicksToNextWin}</h1>)
         return data
