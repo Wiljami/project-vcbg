@@ -27,14 +27,21 @@ class App extends React.Component {
     }
 
     playGame = async () => {
-        const hr = await fetch('/game')
-        const data = await hr.json()
+        this.fetchData().updatePage()
+    }
+
+    updatePage = (data) => {
         let points = localStorage.getItem('points')
         points = points - 1 + data.lastWin
-        await localStorage.setItem('points', points)
-        await localStorage.setItem('clicksToNextWin', data.clicksToNextWin)
-        await localStorage.setItem('lastWin', data.lastWin)
-        await this.setState({'points' : points})
+        localStorage.setItem('points', points)
+        localStorage.setItem('clicksToNextWin', data.clicksToNextWin)
+        localStorage.setItem('lastWin', data.lastWin)
+        this.setState({'points' : points})
+    }
+
+    fetchData = async () => {
+        const hr = await fetch('/game')
+        return await hr.json()
     }
 
     resetGame = () => {
