@@ -15,21 +15,19 @@ class App extends React.Component {
 
     render() {
         let button;
-        let data = []
         const points = localStorage.getItem('points')
         if (points <= 0) {
             button = <GameButton text='Reset Game' color='secondary' click={this.resetGame}/>;
         } else {
             button = <GameButton text='Play Game' color='primary' click={this.playGame}/>
         }
-        data.push(<GameState
+
+        return <GameState
             points={this.state.points}
             lastWin={this.state.lastWin}
             clicksToNextWin={this.state.clicksToNextWin}
             button={button}
-        />)
-
-        return data
+        />
     }
 
     playGame = () => {
