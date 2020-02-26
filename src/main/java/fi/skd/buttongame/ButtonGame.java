@@ -58,7 +58,7 @@ public class ButtonGame {
                 dos.writeInt(counter);
             } catch (IOException e) {
                 e.printStackTrace();
-                System.out.println("Something went wrong with reading the counter file.");
+                System.out.println("Something went wrong with using the counter file.");
             }
         }
         return counter;
