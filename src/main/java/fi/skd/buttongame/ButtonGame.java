@@ -37,38 +37,30 @@ public class ButtonGame {
 
     private synchronized int runCounter() {
         int counter = -1;
-        String filename = "counter.txt";
-        File counterFile = new File(filename);
-        int ch;
+        File counterFile = new File("counter.txt");
 
         if (!counterFile.exists()) {
             try {
                 counterFile.createNewFile();
-                FileWriter fw = new FileWriter(counterFile);
                 counter = 1;
-                fw.write(String.valueOf(counter));
-                fw.close();
+                DataOutputStream dos = new DataOutputStream(new FileOutputStream(counterFile));
+                dos.writeInt(counter);
             } catch (IOException e) {
+                e.printStackTrace();
                 System.out.println("Something went wrong with creating the counter file.");
             }
         } else {
             try {
-                FileReader fr=new FileReader(filename);
-                StringBuilder stringBuilder = new StringBuilder();
-                while ((ch=fr.read())!=-1) {
-                    stringBuilder.append((char) ch);
-                }
-                fr.close();
-                counter = Integer.parseInt(stringBuilder.toString());
-                counter++;
-                FileWriter fw = new FileWriter(counterFile);
-                fw.write(String.valueOf(counter));
-                fw.close();
+                DataInputStream dis = new DataInputStream(new FileInputStream(counterFile));
+                counter = dis.readInt() + 1;
+                System.out.println(counter);
+                DataOutputStream dos = new DataOutputStream(new FileOutputStream(counterFile));
+                dos.writeInt(counter);
             } catch (IOException e) {
-                System.out.println("Something went wrong with the counter file.");
+                e.printStackTrace();
+                System.out.println("Something went wrong with reading the counter file.");
             }
         }
-
         return counter;
     }
 }
