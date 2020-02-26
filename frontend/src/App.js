@@ -3,10 +3,11 @@ import GameState from './GameState'
 import GameButton from './GameButton'
 
 class App extends React.Component {
+    initialPoints = 20
     constructor(props) {
         super(props)
         if (localStorage.getItem('points') === null) {
-            localStorage.setItem('points', 20)
+            localStorage.setItem('points', this.initialPoints.toString())
         }
         this.state = {'points' :localStorage.getItem('points'),
             'clicksToNextWin' : '?',
@@ -44,9 +45,8 @@ class App extends React.Component {
     }
 
     resetGame = () => {
-        const points = 20
-        localStorage.setItem('points', points)
-        this.setState({'points' : points})
+        localStorage.setItem('points', this.initialPoints.toString())
+        this.setState({'points' : this.initialPoints})
     }
 }
 
