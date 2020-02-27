@@ -3,9 +3,6 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 // A custom theme for this app
 const theme = createMuiTheme({
-    root: {
-        width: '1200px',
-    },
     palette: {
         primary: {
             main: '#556cd6',
