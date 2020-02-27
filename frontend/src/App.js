@@ -57,7 +57,6 @@ class App extends React.Component {
     }
 
     serverError = () => {
-        console.log("Error connecting to the server.")
         this.setState({'errorDialog' : true})
     }
 
