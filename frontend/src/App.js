@@ -40,7 +40,11 @@ class App extends React.Component {
     }
 
     playGame = () => {
-        fetch('/game').then(data => data.json()).then(this.updatePage)
+        fetch('/game').then(data => data.json()).then(this.updatePage).catch(this.serverError)
+    }
+
+    serverError = () => {
+        console.log("Error connecting to the server.")
     }
 
     updatePage = (data) => {
