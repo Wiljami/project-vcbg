@@ -3,6 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import GameState from './GameState'
 import GameButton from './GameButton'
+import Grid from "@material-ui/core/Grid";
 
 class App extends React.Component {
     initialPoints = 20
@@ -26,16 +27,25 @@ class App extends React.Component {
         }
 
         return (
-            <Paper>
-                <Typography variant="h4" component="h1" gutterBottom>
-                    The Amazing Button Press Game!
-                </Typography>
-                <GameState
-                points={this.state.points}
-                lastWin={this.state.lastWin}
-                clicksToNextWin={this.state.clicksToNextWin}
-                button={button}/>
-            </Paper>
+            <Grid
+                container
+                spacing={10}
+                direction="column"
+                alignItems="center"
+                justify="center"
+                style={{ minHeight: '100vh' }}
+            >
+                <Paper>
+                    <Typography variant="h4" component="h1" gutterBottom>
+                        The Amazing Button Press Game!
+                    </Typography>
+                    <GameState
+                    points={this.state.points}
+                    lastWin={this.state.lastWin}
+                    clicksToNextWin={this.state.clicksToNextWin}
+                    button={button}/>
+                </Paper>
+            </Grid>
             )
     }
 
