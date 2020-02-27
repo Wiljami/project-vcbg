@@ -6,12 +6,13 @@ import GameButton from './GameButton'
 import Grid from "@material-ui/core/Grid";
 import ErrorDialog from "./ErrorDialog";
 
+const initialPoints = 20
+
 class App extends React.Component {
-    initialPoints = 20
     constructor(props) {
         super(props)
         if (localStorage.getItem('points') === null) {
-            localStorage.setItem('points', this.initialPoints.toString())
+            localStorage.setItem('points', initialPoints.toString())
         }
         this.state = {'points' :localStorage.getItem('points'),
             'clicksToNextWin' : '?',
@@ -74,8 +75,8 @@ class App extends React.Component {
     }
 
     resetGame = () => {
-        localStorage.setItem('points', this.initialPoints.toString())
-        this.setState({'points' : this.initialPoints})
+        localStorage.setItem('points', initialPoints.toString())
+        this.setState({'points' : initialPoints})
     }
 }
 
