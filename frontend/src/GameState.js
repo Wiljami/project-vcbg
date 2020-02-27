@@ -4,7 +4,7 @@ import Box from "@material-ui/core/Box";
 
 export default function GameState(props) {
     return (
-        <Box>
+        <Box style={{textAlign : 'center'}}>
             <Typography color="textSecondary">
                 Your points: {props.points}
             </Typography>
