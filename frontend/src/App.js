@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import GameState from './GameState'
 import GameButton from './GameButton'
 import Grid from "@material-ui/core/Grid";
+import ErrorDialog from "./ErrorDialog";
 
 class App extends React.Component {
     initialPoints = 20
@@ -14,7 +15,8 @@ class App extends React.Component {
         }
         this.state = {'points' :localStorage.getItem('points'),
             'clicksToNextWin' : '?',
-            'lastWin' : '?'}
+            'lastWin' : '?',
+            'errorDialog' : false}
     }
 
     render() {
@@ -35,6 +37,7 @@ class App extends React.Component {
                 justify="center"
                 style={{ minHeight: '100vh' }}
             >
+                <ErrorDialog state = {this.state.errorDialog} handleClose={this.handleCLose}/>
                 <Paper elevation={5} style={{padding: 25}}>
                     <Typography variant="h4" component="h1" gutterBottom>
                         The Amazing Button Press Game!
@@ -55,7 +58,11 @@ class App extends React.Component {
 
     serverError = () => {
         console.log("Error connecting to the server.")
-        // TODO: Add proper error handling
+        this.setState({'errorDialog' : true})
+    }
+
+    handleCLose = () => {
+        this.setState({'errorDialog' : false})
     }
 
     updatePage = (data) => {
