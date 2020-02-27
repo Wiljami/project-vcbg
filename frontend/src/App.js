@@ -1,4 +1,7 @@
-import React from 'react'
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
+import Paper from '@material-ui/core/Paper';
 import GameState from './GameState'
 import GameButton from './GameButton'
 
@@ -23,12 +26,18 @@ class App extends React.Component {
             button = <GameButton text='Play Game' color='primary' click={this.playGame}/>
         }
 
-        return <GameState
-            points={this.state.points}
-            lastWin={this.state.lastWin}
-            clicksToNextWin={this.state.clicksToNextWin}
-            button={button}
-        />
+        return (
+            <Paper>
+                <Typography variant="h4" component="h1" gutterBottom>
+                    The Amazing Button Press Game!
+                </Typography>
+                <GameState
+                points={this.state.points}
+                lastWin={this.state.lastWin}
+                clicksToNextWin={this.state.clicksToNextWin}
+                button={button}/>
+            </Paper>
+            )
     }
 
     playGame = () => {
@@ -48,6 +57,19 @@ class App extends React.Component {
         localStorage.setItem('points', this.initialPoints.toString())
         this.setState({'points' : this.initialPoints})
     }
+}
+
+function Copyright() {
+    return (
+        <Typography variant="body2" color="textSecondary" align="center">
+            {'Copyright © '}
+            <Link color="inherit" href="https://material-ui.com/">
+                Your Website
+            </Link>{' '}
+            {new Date().getFullYear()}
+            {'.'}
+        </Typography>
+    );
 }
 
 export default App;

@@ -8,14 +8,3 @@ body {
   text-align: center;
   margin: 0;
 }
-
-.centerBody {
-  max-width: 1200px;
-  background: #1F2833;
-  margin: 20px auto;
-  padding: 20px;
-}
-
-h1.title {
-  color: #66FCF1;
-}
