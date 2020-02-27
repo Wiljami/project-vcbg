@@ -45,6 +45,7 @@ class App extends React.Component {
 
     serverError = () => {
         console.log("Error connecting to the server.")
+        // TODO: Add proper error handling
     }
 
     updatePage = (data) => {
