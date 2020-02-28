@@ -15,8 +15,8 @@ class App extends React.Component {
             localStorage.setItem('points', initialPoints.toString())
         }
         this.state = {'points' :localStorage.getItem('points'),
-            'clicksToNextWin' : '?',
-            'lastWin' : '?',
+            'clicksToNextWin' : -1,
+            'lastWin' : -1,
             'errorDialog' : false}
     }
 
