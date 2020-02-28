@@ -8,7 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default function ErrorDialog(props) {
   return (
-    <div>
+    <>
       <Dialog
         open={props.state}
         onClose={props.handleClose}
@@ -29,6 +29,6 @@ export default function ErrorDialog(props) {
           </DialogActions>
         </div>
       </Dialog>
-    </div>
+    </>
   );
 }
