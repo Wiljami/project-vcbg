@@ -5,7 +5,6 @@ import GameState from './GameState'
 import GameButton from './GameButton'
 import Grid from "@material-ui/core/Grid";
 import ErrorDialog from "./ErrorDialog";
-import DialogContentText from "@material-ui/core/DialogContentText";
 
 const initialPoints = 20
 
@@ -15,7 +14,6 @@ class App extends React.Component {
         if (localStorage.getItem('points') === null) {
             localStorage.setItem('points', initialPoints.toString())
         }
-
 
         this.state = {'points' :localStorage.getItem('points'),
             'clicksToNextWin' : -1,
