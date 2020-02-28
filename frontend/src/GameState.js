@@ -28,12 +28,14 @@ export default function GameState(props) {
         )
     }
     return (
-        <Box style={{textAlign : 'center'}}>
-            <Typography color="textSecondary">
-                Your points: {props.points}
-            </Typography>
-            {props.button}
-            {data}
-        </Box>
+        <React.Fragment>
+            <Box style={{textAlign : 'center'}}>
+                <Typography color="textSecondary">
+                    Your points: {props.points}
+                </Typography>
+                {props.button}
+                {data}
+            </Box>
+        </React.Fragment>
     )
 }

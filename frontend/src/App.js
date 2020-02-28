@@ -33,39 +33,41 @@ class App extends React.Component {
         }
 
         return (
-            <Grid
-                container
-                spacing={10}
-                direction="column"
-                alignItems="center"
-                justify="center"
-                style={{ minHeight: '100vh' }}
-            >
-                <ErrorDialog
-                    state = {this.state.scoreDialog}
-                    handleClose={this.resetGame}
-                    buttonText='RESET'
-                    title='GAME OVER'
-                    text='You ran out of points. Click reset to restart the game.'
-                />
-                <ErrorDialog
-                    state = {this.state.errorDialog}
-                    handleClose={this.handleClose}
-                    buttonText='OK'
-                    title='Server Error'
-                    text='There is something wrong with connecting to the server. :('
-                />
-                <Paper elevation={5} style={{padding: 25}}>
-                    <Typography variant="h4" component="h1" gutterBottom>
-                        The Amazing Button Press Game!
-                    </Typography>
-                    <GameState
-                    points={this.state.points}
-                    lastWin={this.state.lastWin}
-                    clicksToNextWin={this.state.clicksToNextWin}
-                    button={button}/>
-                </Paper>
-            </Grid>
+            <React.Fragment>
+                <Grid
+                    container
+                    spacing={10}
+                    direction="column"
+                    alignItems="center"
+                    justify="center"
+                    style={{ minHeight: '100vh' }}
+                >
+                    <ErrorDialog
+                        state = {this.state.scoreDialog}
+                        handleClose={this.resetGame}
+                        buttonText='RESET'
+                        title='GAME OVER'
+                        text='You ran out of points. Click reset to restart the game.'
+                    />
+                    <ErrorDialog
+                        state = {this.state.errorDialog}
+                        handleClose={this.handleClose}
+                        buttonText='OK'
+                        title='Server Error'
+                        text='There is something wrong with connecting to the server. :('
+                    />
+                    <Paper elevation={5} style={{padding: 25}}>
+                        <Typography variant="h4" component="h1" gutterBottom>
+                            The Amazing Button Press Game!
+                        </Typography>
+                        <GameState
+                        points={this.state.points}
+                        lastWin={this.state.lastWin}
+                        clicksToNextWin={this.state.clicksToNextWin}
+                        button={button}/>
+                    </Paper>
+                </Grid>
+            </React.Fragment>
             )
     }
 
