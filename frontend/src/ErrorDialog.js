@@ -15,15 +15,15 @@ export default function ErrorDialog(props) {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="alert-dialog-title">{"Server Error"}</DialogTitle>
+                <DialogTitle id="alert-dialog-title">{props.title}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        There is something wrong with connecting to the server. :(
+                        {props.text}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={props.handleClose} color="primary">
-                        OK
+                        {props.buttonText}
                     </Button>
                 </DialogActions>
             </Dialog>

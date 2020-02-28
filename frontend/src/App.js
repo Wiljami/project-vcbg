@@ -5,6 +5,7 @@ import GameState from './GameState'
 import GameButton from './GameButton'
 import Grid from "@material-ui/core/Grid";
 import ErrorDialog from "./ErrorDialog";
+import DialogContentText from "@material-ui/core/DialogContentText";
 
 const initialPoints = 20
 
@@ -14,17 +15,21 @@ class App extends React.Component {
         if (localStorage.getItem('points') === null) {
             localStorage.setItem('points', initialPoints.toString())
         }
+
+
         this.state = {'points' :localStorage.getItem('points'),
             'clicksToNextWin' : -1,
             'lastWin' : -1,
-            'errorDialog' : false}
+            'errorDialog' : false,
+            'scoreDialog': false
+        }
     }
 
     render() {
         let button;
         const points = localStorage.getItem('points')
         if (points <= 0) {
-            button = <GameButton text='Reset Game' color='secondary' click={this.resetGame}/>;
+            button = <GameButton text='Reset Game' color='secondary' click={this.resetGame}/>
         } else {
             button = <GameButton text='Play Game' color='primary' click={this.playGame}/>
         }
@@ -38,7 +43,20 @@ class App extends React.Component {
                 justify="center"
                 style={{ minHeight: '100vh' }}
             >
-                <ErrorDialog state = {this.state.errorDialog} handleClose={this.handleClose}/>
+                <ErrorDialog
+                    state = {this.state.scoreDialog}
+                    handleClose={this.resetGame}
+                    buttonText='RESET'
+                    title='GAME OVER'
+                    text='You ran out of points. Click reset to restart the game.'
+                />
+                <ErrorDialog
+                    state = {this.state.errorDialog}
+                    handleClose={this.handleClose}
+                    buttonText='OK'
+                    title='Server Error'
+                    text='There is something wrong with connecting to the server. :('
+                />
                 <Paper elevation={5} style={{padding: 25}}>
                     <Typography variant="h4" component="h1" gutterBottom>
                         The Amazing Button Press Game!
@@ -72,11 +90,17 @@ class App extends React.Component {
         this.setState({'points' : points,
             'clicksToNextWin' : data.clicksToNextWin,
             'lastWin' : data.lastWin})
+        if (points === 0) {
+            this.setState({'scoreDialog' : true})
+        }
     }
 
     resetGame = () => {
         localStorage.setItem('points', initialPoints.toString())
-        this.setState({'points' : initialPoints})
+        this.setState({
+            'points' : initialPoints,
+            'scoreDialog' : false
+        })
     }
 }
 
