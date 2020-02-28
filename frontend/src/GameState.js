@@ -18,7 +18,7 @@ export default function GameState(props) {
     } else {
         data.push(
             <Typography color="textSecondary">
-                Your points: {props.points}
+                Clicks to next win: {props.clicksToNextWin}
             </Typography>
         )
         data.push(
