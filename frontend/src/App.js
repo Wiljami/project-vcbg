@@ -33,7 +33,7 @@ class App extends React.Component {
         }
 
         return (
-            <React.Fragment>
+            <>
                 <Grid
                     container
                     spacing={10}
@@ -67,7 +67,7 @@ class App extends React.Component {
                         button={button}/>
                     </Paper>
                 </Grid>
-            </React.Fragment>
+            </>
             )
     }
 

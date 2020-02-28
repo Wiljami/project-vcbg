@@ -28,7 +28,7 @@ export default function GameState(props) {
         )
     }
     return (
-        <React.Fragment>
+        <>
             <Box style={{textAlign : 'center'}}>
                 <Typography color="textSecondary">
                     Your points: {props.points}
@@ -36,6 +36,6 @@ export default function GameState(props) {
                 {props.button}
                 {data}
             </Box>
-        </React.Fragment>
+        </>
     )
 }
