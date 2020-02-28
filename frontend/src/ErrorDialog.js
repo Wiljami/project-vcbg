@@ -15,6 +15,7 @@ export default function ErrorDialog(props) {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
+                <div align="center">
                 <DialogTitle id="alert-dialog-title">{props.title}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
@@ -26,6 +27,7 @@ export default function ErrorDialog(props) {
                         {props.buttonText}
                     </Button>
                 </DialogActions>
+                </div>
             </Dialog>
         </div>
     );
