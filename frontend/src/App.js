@@ -38,7 +38,7 @@ class App extends React.Component {
                 justify="center"
                 style={{ minHeight: '100vh' }}
             >
-                <ErrorDialog state = {this.state.errorDialog} handleClose={this.handleCLose}/>
+                <ErrorDialog state = {this.state.errorDialog} handleClose={this.handleClose}/>
                 <Paper elevation={5} style={{padding: 25}}>
                     <Typography variant="h4" component="h1" gutterBottom>
                         The Amazing Button Press Game!
@@ -61,7 +61,7 @@ class App extends React.Component {
         this.setState({'errorDialog' : true})
     }
 
-    handleCLose = () => {
+    handleClose = () => {
         this.setState({'errorDialog' : false})
     }
 
